@@ -6,6 +6,8 @@ import pyfiglet as pfg
 from time import sleep
 import os
 
+pg.FAILSAFE = False
+
 logo = pfg.figlet_format("Squash the bee.")
 print(logo+"\n")
 mode = int(input("Modes\n------\nTo select any mode given below, type its name\n0 - lets you create a new word pack\n1 - lets you practise any created pack\nPlease, select mode: "))
@@ -113,7 +115,7 @@ if mode == 1:
 
         while running == True:
             for image in images:
-                if pg.locateOnScreen(f"packs/{pack_name}/{image}",confidence=0.6,region=(720,170,420,110)) != None:
+                if pg.locateOnScreen(f"packs/{pack_name}/{image}",confidence=0.65,region=(720,170,420,110)) != None:
                     Run(970,455,"left",image)
                     number_of_words += 1
 
@@ -129,7 +131,7 @@ if mode == 1:
         while running == True:
             if whichWindow == "left":
                 for image in images:
-                    if pg.locateOnScreen(f"packs/{pack_name}/{image}",confidence=0.65,grayscale=True,region=(275,170,400,200)) != None:
+                    if pg.locateOnScreen(f"packs/{pack_name}/{image}",confidence=0.65,region=(275,170,400,200)) != None:
                         Run(520,460,"right",image)
                         number_of_words += 1
 
@@ -137,7 +139,7 @@ if mode == 1:
 
             elif whichWindow == "right":
                 for image in images:
-                    if pg.locateOnScreen(f"packs/{pack_name}/{image}",confidence=0.65,grayscale=True,region=(1250,170,450,200)) != None:
+                    if pg.locateOnScreen(f"packs/{pack_name}/{image}",confidence=0.65,region=(1250,170,450,200)) != None:
                         Run(1430,460,"left",image)
             
                     checkForStop()
@@ -152,5 +154,4 @@ if mode == 1:
             pg.click(960,660)
         text = pfg.figlet_format("Stopped.")
         print(text)
-        Stats(False)
         input("Press any key to shutdown...")
