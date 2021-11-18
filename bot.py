@@ -106,6 +106,8 @@ if mode == 1:
     pack_name = pack_list[pack_index-1]
     CreateList(pack_name)
     double = int(input("Do you wish to run double mode?\n0 - no, 1 - yes: "))
+    text = pfg.figlet_format("Running...")
+    print(text)
     print("\nWhen you wish to shut down the bot, hold the star key ===> * <===\nShutting the bot down will most likely ruin your words in a row bonus.")
     
     if double == 0:
